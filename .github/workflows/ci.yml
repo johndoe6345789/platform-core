@@ -99,6 +99,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             build-essential cmake ninja-build pkg-config
+      - name: Fetch shared cmake modules
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/johndoe6345789/next_extra_primary.git /tmp/shared
+          git -C /tmp/shared sparse-checkout set cmake
+          mkdir -p "$(dirname "$GITHUB_WORKSPACE/cmake")"
+          cp -r /tmp/shared/cmake "$GITHUB_WORKSPACE/cmake"
+          ls "$GITHUB_WORKSPACE/cmake"
       - name: Configure
         working-directory: services/auth-service
         run: |
@@ -117,6 +125,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             build-essential cmake ninja-build pkg-config
+      - name: Fetch shared cmake modules
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/johndoe6345789/next_extra_primary.git /tmp/shared
+          git -C /tmp/shared sparse-checkout set cmake
+          mkdir -p "$(dirname "$GITHUB_WORKSPACE/cmake")"
+          cp -r /tmp/shared/cmake "$GITHUB_WORKSPACE/cmake"
+          ls "$GITHUB_WORKSPACE/cmake"
       - name: Configure
         working-directory: services/infra-service
         run: |
@@ -135,6 +151,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             build-essential cmake ninja-build pkg-config
+      - name: Fetch shared cmake modules
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/johndoe6345789/next_extra_primary.git /tmp/shared
+          git -C /tmp/shared sparse-checkout set cmake
+          mkdir -p "$(dirname "$GITHUB_WORKSPACE/cmake")"
+          cp -r /tmp/shared/cmake "$GITHUB_WORKSPACE/cmake"
+          ls "$GITHUB_WORKSPACE/cmake"
       - name: Configure
         working-directory: services/migrate-service
         run: |
@@ -153,6 +177,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             build-essential cmake ninja-build pkg-config
+      - name: Fetch shared cmake modules
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/johndoe6345789/next_extra_primary.git /tmp/shared
+          git -C /tmp/shared sparse-checkout set cmake
+          mkdir -p "$(dirname "$GITHUB_WORKSPACE/cmake")"
+          cp -r /tmp/shared/cmake "$GITHUB_WORKSPACE/cmake"
+          ls "$GITHUB_WORKSPACE/cmake"
       - name: Configure
         working-directory: services/platform-service
         run: |
