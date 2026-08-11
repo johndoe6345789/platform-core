@@ -1,0 +1,144 @@
+# Generated for the reposplit micro-repo layout.
+# Steps are emitted only for tooling this repo actually contains.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  npm:
+    name: npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - uses: actions/cache@v6
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: npm-${{ runner.os }}-
+      - name: Install dependencies
+        run: npm install
+      - name: lint (services/audit/admin)
+        working-directory: services/audit/admin
+        run: npm run lint
+      - name: build (services/audit/admin)
+        working-directory: services/audit/admin
+        run: npm run build
+      - name: lint (services/backup/admin)
+        working-directory: services/backup/admin
+        run: npm run lint
+      - name: build (services/backup/admin)
+        working-directory: services/backup/admin
+        run: npm run build
+      - name: lint (services/cron/admin)
+        working-directory: services/cron/admin
+        run: npm run lint
+      - name: build (services/cron/admin)
+        working-directory: services/cron/admin
+        run: npm run build
+      - name: lint (services/feature-flags/admin)
+        working-directory: services/feature-flags/admin
+        run: npm run lint
+      - name: build (services/feature-flags/admin)
+        working-directory: services/feature-flags/admin
+        run: npm run build
+      - name: lint (services/job-queue/admin)
+        working-directory: services/job-queue/admin
+        run: npm run lint
+      - name: build (services/job-queue/admin)
+        working-directory: services/job-queue/admin
+        run: npm run build
+      - name: build (services/sso/portal)
+        working-directory: services/sso/portal
+        run: npm run build
+      - name: lint (services/status-page/public)
+        working-directory: services/status-page/public
+        run: npm run lint
+      - name: build (services/status-page/public)
+        working-directory: services/status-page/public
+        run: npm run build
+  cpp-services-auth-service:
+    name: C++ services/auth-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config
+      - name: Configure
+        working-directory: services/auth-service
+        run: |
+          cmake -S . -B _build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        working-directory: services/auth-service
+        run: cmake --build _build --parallel "$(nproc)"
+  cpp-services-infra-service:
+    name: C++ services/infra-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config
+      - name: Configure
+        working-directory: services/infra-service
+        run: |
+          cmake -S . -B _build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        working-directory: services/infra-service
+        run: cmake --build _build --parallel "$(nproc)"
+  cpp-services-migrate-service:
+    name: C++ services/migrate-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config
+      - name: Configure
+        working-directory: services/migrate-service
+        run: |
+          cmake -S . -B _build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        working-directory: services/migrate-service
+        run: cmake --build _build --parallel "$(nproc)"
+  cpp-services-platform-service:
+    name: C++ services/platform-service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkg-config
+      - name: Configure
+        working-directory: services/platform-service
+        run: |
+          cmake -S . -B _build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        working-directory: services/platform-service
+        run: cmake --build _build --parallel "$(nproc)"
