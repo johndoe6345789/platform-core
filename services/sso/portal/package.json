@@ -1,0 +1,34 @@
+{
+  "name": "nextra-sso",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "@monaco-editor/react": "^4.7.0",
+    "@shared/m3": "file:../../../shared/components/m3",
+    "@shared/components": "file:../../../shared/components",
+    "@shared/hooks": "file:../../../shared/hooks",
+    "@shared/hooks-canvas": "file:../../../shared/redux/hooks-canvas",
+    "@shared/icons": "file:../../../shared/icons",
+    "@shared/redux-core": "file:../../../shared/redux/core",
+    "@shared/redux-slices": "file:../../../shared/redux/slices",
+    "@shared/scss": "file:../../../shared/scss",
+    "@shared/service-adapters": "file:../../../shared/redux/adapters",
+    "@reduxjs/toolkit": "^2.11.2",
+    "react-redux": "^9.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
+}

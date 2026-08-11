@@ -1,0 +1,10 @@
+[
+  "integer", "bigint", "smallint",
+  "serial", "bigserial",
+  "text", "varchar", "char",
+  "boolean",
+  "real", "double precision", "numeric",
+  "date", "timestamp", "timestamptz",
+  "uuid", "json", "jsonb",
+  "bytea", "inet", "cidr"
+]

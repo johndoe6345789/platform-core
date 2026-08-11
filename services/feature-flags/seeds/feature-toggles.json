@@ -1,0 +1,56 @@
+[
+  {
+    "key": "ai_chat",
+    "enabled": true,
+    "description": "AI chat integration with Claude and OpenAI",
+    "scope": "global"
+  },
+  {
+    "key": "gamification",
+    "enabled": true,
+    "description": "Points, badges, streaks, and leaderboard",
+    "scope": "global"
+  },
+  {
+    "key": "notifications",
+    "enabled": true,
+    "description": "Real-time notification system",
+    "scope": "global"
+  },
+  {
+    "key": "dark_mode",
+    "enabled": true,
+    "description": "Dark and light theme toggle",
+    "scope": "global"
+  },
+  {
+    "key": "i18n",
+    "enabled": true,
+    "description": "Multi-language support (en, es, fr, de)",
+    "scope": "global"
+  },
+  {
+    "key": "contact_form",
+    "enabled": true,
+    "description": "Public contact form with email delivery",
+    "scope": "global"
+  },
+  {
+    "key": "password_reset",
+    "enabled": true,
+    "description": "Forgot password email flow",
+    "scope": "global"
+  },
+  {
+    "key": "admin_panel",
+    "enabled": false,
+    "description": "Admin dashboard for user management",
+    "scope": "admin"
+  },
+  {
+    "key": "beta_features",
+    "enabled": false,
+    "description": "Experimental features for beta testers",
+    "scope": "beta"
+  }
+]

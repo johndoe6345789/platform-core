@@ -1,0 +1,15 @@
+@use 'flags-shell';
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0a0a0c;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100dvh;
+}

@@ -1,0 +1,25 @@
+{
+  "app": {
+    "number_of_threads": 1,
+    "log": {
+      "log_path": "./logs",
+      "logfile_base_name": "nextra-migrate",
+      "log_size_limit": 52428800,
+      "log_level": "INFO"
+    }
+  },
+  "db_clients": [
+    {
+      "name": "default",
+      "rdbms": "postgresql",
+      "host": "db",
+      "port": 5432,
+      "dbname": "nextra_db",
+      "user": "nextra",
+      "passwd": "nextra_dev",
+      "connection_number": 2,
+      "timeout": 60,
+      "auto_batch": true
+    }
+  ]
+}

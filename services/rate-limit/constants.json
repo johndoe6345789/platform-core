@@ -1,0 +1,30 @@
+{
+  "default_group": "public",
+  "groups": {
+    "admin": {
+      "capacity": 60,
+      "refill_per_sec": 1.0,
+      "prefixes": [
+        "/api/admin/",
+        "/api/impersonate"
+      ]
+    },
+    "auth": {
+      "capacity": 10,
+      "refill_per_sec": 0.1666,
+      "prefixes": [
+        "/api/auth/login",
+        "/api/auth/register",
+        "/api/auth/password",
+        "/api/auth/token"
+      ]
+    },
+    "public": {
+      "capacity": 600,
+      "refill_per_sec": 10.0,
+      "prefixes": [
+        "/api/"
+      ]
+    }
+  }
+}

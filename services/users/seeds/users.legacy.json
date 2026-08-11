@@ -1,0 +1,38 @@
+[
+  {
+    "email": "admin@nextra.local",
+    "username": "admin",
+    "password_hash": "$2b$12$PLACEHOLDER_HASH_admin_change_me_000000000000000000000",
+    "display_name": "Admin User",
+    "avatar_url": null,
+    "is_active": true,
+    "is_confirmed": true,
+    "role": "admin",
+    "total_points": 0,
+    "current_level": 1
+  },
+  {
+    "email": "alice@example.com",
+    "username": "alice",
+    "password_hash": "$2b$12$PLACEHOLDER_HASH_alice_change_me_000000000000000000000",
+    "display_name": "Alice Johnson",
+    "avatar_url": null,
+    "is_active": true,
+    "is_confirmed": true,
+    "role": "user",
+    "total_points": 250,
+    "current_level": 3
+  },
+  {
+    "email": "bob@example.com",
+    "username": "bob",
+    "password_hash": "$2b$12$PLACEHOLDER_HASH_bob_change_me_00000000000000000000000",
+    "display_name": "Bob Smith",
+    "avatar_url": null,
+    "is_active": true,
+    "is_confirmed": false,
+    "role": "user",
+    "total_points": 50,
+    "current_level": 1
+  }
+]

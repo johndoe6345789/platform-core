@@ -1,0 +1,19 @@
+#pragma once
+/**
+ * @file portal_embedded.h.in
+ * @brief Auto-generated at build time by
+ *        cmake/portal.cmake. Do not edit; edit
+ *        shared/constants/tool-links.json and
+ *        services/portal/static/styles.css.
+ */
+
+namespace portal
+{
+
+inline constexpr const char* kToolLinksJson =
+    R"PORTAL_JSON(@NEXTRA_TOOL_LINKS_JSON@)PORTAL_JSON";
+
+inline constexpr const char* kPortalStylesCss =
+    R"PORTAL_CSS(@NEXTRA_PORTAL_STYLES_CSS@)PORTAL_CSS";
+
+} // namespace portal

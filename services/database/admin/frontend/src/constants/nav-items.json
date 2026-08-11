@@ -1,0 +1,9 @@
+[
+  { "id": "tables", "label": "Tables", "icon": "table" },
+  { "id": "sql", "label": "SQL Query", "icon": "code" },
+  { "id": "builder", "label": "Query Builder", "icon": "build" },
+  { "id": "manage", "label": "Table Manager", "icon": "settings" },
+  { "id": "columns", "label": "Columns", "icon": "columns" },
+  { "id": "constraints", "label": "Constraints", "icon": "link" },
+  { "id": "indexes", "label": "Indexes", "icon": "speed" }
+]

@@ -1,0 +1,40 @@
+@use 'theme';
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  font-family: 'Roboto', system-ui, sans-serif;
+}
+
+.backups-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.backups-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid
+      var(--md-sys-color-outline-variant);
+  }
+}
+
+.backups-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}

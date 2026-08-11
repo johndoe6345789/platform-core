@@ -1,0 +1,74 @@
+{
+  "tickIntervalSeconds": 30,
+  "gracefulShutdownSeconds": 10,
+  "dueSlackSeconds": 1,
+  "seedSchedules": [
+    {
+      "name": "audit.prune",
+      "cron": "0 3 * * *",
+      "handler": "audit.prune",
+      "description": "Drop audit log partitions older than retention window"
+    },
+    {
+      "name": "audit.archive",
+      "cron": "30 2 * * *",
+      "handler": "audit.archive",
+      "description": "Copy expiring partitions to s3server before prune"
+    },
+    {
+      "name": "search.reindex",
+      "cron": "*/15 * * * *",
+      "handler": "search.reindex",
+      "description": "Reconcile Elasticsearch from mutation event log"
+    },
+    {
+      "name": "backup.daily",
+      "cron": "@daily",
+      "handler": "backup.run",
+      "description": "pg_dump + WAL-G upload to s3server"
+    },
+    {
+      "name": "notifications.digest",
+      "cron": "0 * * * *",
+      "handler": "notifications.digest",
+      "description": "Roll up hourly digests for users with digest preference"
+    },
+    {
+      "name": "livestream.recordings.cleanup",
+      "cron": "15 4 * * *",
+      "handler": "mediamtx.cleanup",
+      "description": "Delete expired recordings from the mediamtx store"
+    },
+    {
+      "name": "webhooks.retry",
+      "cron": "*/5 * * * *",
+      "handler": "webhooks.retry_sweep",
+      "description": "Re-queue webhook deliveries whose retry window elapsed"
+    },
+    {
+      "name": "blog.scheduled_publish",
+      "cron": "* * * * *",
+      "handler": "blog.publish_due",
+      "description": "Transition scheduled posts to published when due"
+    },
+    {
+      "name": "routes.health_check",
+      "cron": "0 2 * * *",
+      "handler": "routes.health_check",
+      "description": "Nightly smoke test — alert on 404/5xx",
+      "payload": {
+        "portalBase": "http://portal",
+        "locale": "en",
+        "routes": [
+          "/", "/dashboard", "/leaderboard",
+          "/chat", "/messages", "/blog",
+          "/wiki", "/forum", "/gallery",
+          "/shop", "/notifications", "/profile",
+          "/about", "/contact", "/search",
+          "/features", "/login", "/register",
+          "/settings"
+        ]
+      }
+    }
+  ]
+}

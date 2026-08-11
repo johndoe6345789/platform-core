@@ -1,0 +1,30 @@
+{
+  "seeds": [
+    {
+      "key": "auth.passkeys",
+      "description": "WebAuthn passkey login",
+      "enabled": false,
+      "rollout_pct": 0,
+      "targeting": {}
+    },
+    {
+      "key": "ui.darkMode",
+      "description": "Dark mode theme toggle",
+      "enabled": true,
+      "rollout_pct": 100,
+      "targeting": {}
+    },
+    {
+      "key": "experimental.aiChat",
+      "description": "Next-gen AI chat experience",
+      "enabled": false,
+      "rollout_pct": 10,
+      "targeting": {}
+    }
+  ],
+  "evaluation": {
+    "hash": "fnv1a",
+    "deterministic_on": ["key", "user_id"],
+    "bucket_size": 100
+  }
+}

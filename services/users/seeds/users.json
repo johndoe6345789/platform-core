@@ -1,0 +1,38 @@
+[
+  {
+    "username": "devadmin",
+    "email": "dev.admin@nextra.local",
+    "display_name": "Dev Admin",
+    "password": "DevAdmin1",
+    "role": "admin",
+    "email_confirmed": true,
+    "total_points": 500,
+    "current_level": 8,
+    "streak_current": 12,
+    "streak_longest": 30
+  },
+  {
+    "username": "devuser",
+    "email": "dev.user@nextra.local",
+    "display_name": "Dev User",
+    "password": "DevUser1",
+    "role": "user",
+    "email_confirmed": true,
+    "total_points": 150,
+    "current_level": 3,
+    "streak_current": 5,
+    "streak_longest": 14
+  },
+  {
+    "username": "devmod",
+    "email": "dev.mod@nextra.local",
+    "display_name": "Dev Moderator",
+    "password": "DevMod1a",
+    "role": "moderator",
+    "email_confirmed": true,
+    "total_points": 300,
+    "current_level": 5,
+    "streak_current": 7,
+    "streak_longest": 21
+  }
+]

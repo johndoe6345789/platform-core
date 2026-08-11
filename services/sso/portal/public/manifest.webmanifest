@@ -1,0 +1,19 @@
+{
+  "name": "Nextra SSO",
+  "short_name": "SSO",
+  "description": "Nextra single sign-on portal.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#1F6FEB",
+  "background_color": "#FFFFFF",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "128x128 192x192 256x256 384x384 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "bucket": "nextra-backups",
+  "kmsKeyEnv": "BACKUP_KMS_KEY",
+  "pgDumpPath": "/usr/bin/pg_dump",
+  "s3Endpoint": "http://s3:9000",
+  "s3AccessKey": "minioadmin",
+  "defaultKind": "full",
+  "keyPrefix": "backups/",
+  "chunkBytes": 65536
+}

@@ -1,0 +1,11 @@
+{
+    "topic": "audit.events",
+    "consumerGroup": "nextra-audit-manager",
+    "brokers": "kafka:9092",
+    "partitionRetentionMonths": 12,
+    "archiveBucket": "audit-archive",
+    "pollIntervalMs": 500,
+    "batchSize": 200,
+    "checkpointHourUtc": 2,
+    "verifyPageSize": 1000
+}

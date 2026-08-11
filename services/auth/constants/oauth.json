@@ -1,0 +1,42 @@
+{
+    "defaultPortalOrigin": "http://localhost:8889",
+    "stateTtlSeconds": 600,
+    "providers": {
+        "google": {
+            "clientIdEnv": "OAUTH_GOOGLE_CLIENT_ID",
+            "clientSecretEnv": "OAUTH_GOOGLE_CLIENT_SECRET",
+            "authorizeUrl":
+                "https://accounts.google.com/o/oauth2/v2/auth",
+            "tokenUrl":
+                "https://oauth2.googleapis.com/token",
+            "userInfoUrl":
+                "https://openidconnect.googleapis.com/v1/userinfo",
+            "scope": "openid email profile",
+            "acceptJson": false
+        },
+        "github": {
+            "clientIdEnv": "OAUTH_GITHUB_CLIENT_ID",
+            "clientSecretEnv": "OAUTH_GITHUB_CLIENT_SECRET",
+            "authorizeUrl":
+                "https://github.com/login/oauth/authorize",
+            "tokenUrl":
+                "https://github.com/login/oauth/access_token",
+            "userInfoUrl": "https://api.github.com/user",
+            "scope": "read:user user:email",
+            "acceptJson": true
+        },
+        "microsoft": {
+            "clientIdEnv": "OAUTH_MICROSOFT_CLIENT_ID",
+            "clientSecretEnv":
+                "OAUTH_MICROSOFT_CLIENT_SECRET",
+            "authorizeUrl":
+    "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            "tokenUrl":
+    "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+            "userInfoUrl":
+                "https://graph.microsoft.com/oidc/userinfo",
+            "scope": "openid email profile",
+            "acceptJson": false
+        }
+    }
+}

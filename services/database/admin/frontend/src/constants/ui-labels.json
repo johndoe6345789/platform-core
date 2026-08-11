@@ -1,0 +1,32 @@
+{
+  "app": {
+    "title": "PgAdmin",
+    "subtitle": "PostgreSQL Administration"
+  },
+  "nav": {
+    "tables": "Tables",
+    "sql": "SQL Query",
+    "builder": "Query Builder",
+    "manage": "Table Manager",
+    "columns": "Columns",
+    "constraints": "Constraints",
+    "indexes": "Indexes",
+    "logout": "Logout"
+  },
+  "tables": {
+    "title": "Database Tables",
+    "empty": "No tables found",
+    "schema": "Schema",
+    "data": "Data",
+    "rowCount": "rows"
+  },
+  "auth": {
+    "title": "PgAdmin",
+    "subtitle": "Sign in to manage your database",
+    "username": "Username",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "error": "Invalid credentials"
+  }
+}

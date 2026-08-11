@@ -1,0 +1,96 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.10);
+  padding: 40px 36px;
+  width: min(400px, 100vw - 32px);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6750a4;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: .875rem;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  outline: none;
+  transition: border-color .15s;
+}
+
+input:focus { border-color: #6750a4; }
+
+.btn {
+  width: 100%;
+  padding: 11px;
+  background: #6750a4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+  margin-top: 4px;
+}
+
+.btn:hover { background: #7965af; }
+.btn:disabled { opacity: .6; cursor: default; }
+
+.sso-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.link {
+  font-size: .8rem;
+  color: #6750a4;
+  text-decoration: none;
+}
+.link:hover { text-decoration: underline; }
+
+.error {
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: .875rem;
+  margin-bottom: 16px;
+}

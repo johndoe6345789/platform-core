@@ -1,0 +1,20 @@
+{
+  "rdbms": "postgresql",
+  "host": "localhost",
+  "port": 5432,
+  "dbname": "nextra_db",
+  "schema": "public",
+  "user": "nextra",
+  "passwd": "",
+  "tables": [],
+  "relationships": {
+    "enabled": true
+  },
+  "convert": {
+    "enabled": true
+  },
+  "restful_api_controllers": {
+    "enabled": false
+  },
+  "namespace": "drogon_model"
+}

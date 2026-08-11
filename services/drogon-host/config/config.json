@@ -1,0 +1,80 @@
+{
+  "listeners": [
+    {
+      "address": "0.0.0.0",
+      "port": 8080,
+      "https": false
+    }
+  ],
+  "app": {
+    "threads_num": 4,
+    "enable_session": false,
+    "document_root": "./public",
+    "upload_path": "./uploads",
+    "max_connections": 100000,
+    "max_connections_per_ip": 0,
+    "client_max_body_size": "10M",
+    "client_max_memory_body_size": "10M",
+    "client_max_websocket_message_size": "128K",
+    "keepalive_requests": 0,
+    "pipelining_requests": 0,
+    "idle_connection_timeout": 60,
+    "relaunch_on_error": false,
+    "use_sendfile": true,
+    "use_gzip": true,
+    "use_brotli": false,
+    "log": {
+      "log_path": "./logs",
+      "logfile_base_name": "nextra-api",
+      "log_size_limit": 104857600,
+      "log_level": "INFO"
+    }
+  },
+  "db_clients": [
+    {
+      "name": "default",
+      "rdbms": "postgresql",
+      "host": "localhost",
+      "port": 5432,
+      "dbname": "nextra_db",
+      "user": "nextra",
+      "passwd": "nextra_dev",
+      "is_fast": false,
+      "connection_number": 4,
+      "timeout": 30,
+      "auto_batch": true
+    }
+  ],
+  "custom_config": {
+    "jwt": {
+      "secret": "",
+      "issuer": "nextra-api",
+      "access_token_ttl_seconds": 900,
+      "refresh_token_ttl_seconds": 604800
+    },
+    "smtp": {
+      "host": "localhost",
+      "port": 587,
+      "user": "",
+      "password": "",
+      "from_address": "noreply@nextra.local",
+      "from_name": "Nextra",
+      "use_tls": true
+    },
+    "ai": {
+      "openai_api_key": "",
+      "openai_model": "gpt-4o",
+      "anthropic_api_key": "",
+      "anthropic_model": "claude-sonnet-4-20250514",
+      "max_tokens_per_request": 4096
+    },
+    "cors": {
+      "allowed_origins": [
+        "http://localhost:3000"
+      ],
+      "allowed_methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+      "allowed_headers": "Content-Type,Authorization",
+      "max_age": 86400
+    }
+  }
+}

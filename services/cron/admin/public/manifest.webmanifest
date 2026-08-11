@@ -1,0 +1,19 @@
+{
+  "name": "Nextra Cron",
+  "short_name": "Cron",
+  "description": "Nextra scheduled tasks console.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#7C3AED",
+  "background_color": "#FFFFFF",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "128x128 192x192 256x256 384x384 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

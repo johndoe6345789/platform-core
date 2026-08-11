@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  font-family:
+    -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  background: #0b0f14;
+  color: #e6edf3;
+}
+
+.audit-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.audit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.audit-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.audit-empty {
+  padding: 48px 16px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.audit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.audit-table th,
+.audit-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #1f2731;
+  text-align: left;
+  vertical-align: top;
+}
+
+.audit-table th {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.audit-hash {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  word-break: break-all;
+}
+
+.integrity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.integrity-ok {
+  background: #0f3a1f;
+  color: #7ee08a;
+}
+
+.integrity-bad {
+  background: #3a0f14;
+  color: #f28b92;
+}

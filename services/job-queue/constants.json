@@ -1,0 +1,15 @@
+{
+  "workers": 4,
+  "pollIntervalMs": 1000,
+  "defaultMaxAttempts": 5,
+  "defaultBackoff": "exponential",
+  "backoffBaseMs": 1000,
+  "backoffMaxMs": 3600000,
+  "lockTimeoutSeconds": 300,
+  "recoveryTickSeconds": 60,
+  "gracefulShutdownSeconds": 30,
+  "deadLetterRetentionDays": 30,
+  "runHistoryRetentionDays": 90,
+  "workerIdPrefix": "nextra-worker",
+  "_note": "Scheduled/cron-style jobs live in cron-manager.json and are owned by the separate cron-manager daemon. This file configures the ad-hoc queue drainer only."
+}

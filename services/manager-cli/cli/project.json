@@ -1,0 +1,45 @@
+{
+  "project_name": "nextra-api",
+  "cpp_standard": 20,
+  "targets": [
+    {
+      "name": "nextra-api",
+      "type": "executable",
+      "sources_dir": "src",
+      "glob_patterns": ["*.cpp"],
+      "exclude_patterns": ["*_test.cpp"],
+      "dependencies": [
+        {"name": "drogon", "cmake_name": "Drogon"},
+        {"name": "nlohmann_json", "cmake_name": "nlohmann_json"},
+        {"name": "cli11", "cmake_name": "CLI11"},
+        {"name": "jwt-cpp", "cmake_name": "jwt-cpp"},
+        {"name": "inja", "cmake_name": "inja"},
+        {"name": "mailio", "cmake_name": "mailio"},
+        {"name": "fmt", "cmake_name": "fmt"},
+        {"name": "spdlog", "cmake_name": "spdlog"}
+      ]
+    },
+    {
+      "name": "nextra-api-tests",
+      "type": "executable",
+      "sources_dir": "tests",
+      "glob_patterns": ["*.cpp"],
+      "exclude_patterns": [],
+      "dependencies": [
+        {"name": "gtest", "cmake_name": "GTest"},
+        {"name": "Drogon", "cmake_name": "Drogon"}
+      ]
+    }
+  ],
+  "conan_packages": [
+    {"ref": "drogon/1.9.8", "cmake_name": "Drogon"},
+    {"ref": "nlohmann_json/3.11.3", "cmake_name": "nlohmann_json"},
+    {"ref": "cli11/2.4.2", "cmake_name": "CLI11"},
+    {"ref": "jwt-cpp/0.7.0", "cmake_name": "jwt-cpp"},
+    {"ref": "inja/3.4.0", "cmake_name": "inja"},
+    {"ref": "mailio/0.23.0", "cmake_name": "mailio"},
+    {"ref": "fmt/10.2.1", "cmake_name": "fmt"},
+    {"ref": "spdlog/1.14.1", "cmake_name": "spdlog"},
+    {"ref": "gtest/1.15.2", "cmake_name": "GTest"}
+  ]
+}
