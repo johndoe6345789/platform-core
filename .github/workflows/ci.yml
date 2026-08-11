@@ -29,7 +29,8 @@ jobs:
           path: ~/.npm
           key: npm-${{ runner.os }}-${{ hashFiles('**/package.json') }}
           restore-keys: npm-${{ runner.os }}-
-      - name: Install dependencies
+      - name: Install (services/audit/admin)
+        working-directory: services/audit/admin
         run: npm install
       - name: lint (services/audit/admin)
         working-directory: services/audit/admin
@@ -37,33 +38,51 @@ jobs:
       - name: build (services/audit/admin)
         working-directory: services/audit/admin
         run: npm run build
+      - name: Install (services/backup/admin)
+        working-directory: services/backup/admin
+        run: npm install
       - name: lint (services/backup/admin)
         working-directory: services/backup/admin
         run: npm run lint
       - name: build (services/backup/admin)
         working-directory: services/backup/admin
         run: npm run build
+      - name: Install (services/cron/admin)
+        working-directory: services/cron/admin
+        run: npm install
       - name: lint (services/cron/admin)
         working-directory: services/cron/admin
         run: npm run lint
       - name: build (services/cron/admin)
         working-directory: services/cron/admin
         run: npm run build
+      - name: Install (services/feature-flags/admin)
+        working-directory: services/feature-flags/admin
+        run: npm install
       - name: lint (services/feature-flags/admin)
         working-directory: services/feature-flags/admin
         run: npm run lint
       - name: build (services/feature-flags/admin)
         working-directory: services/feature-flags/admin
         run: npm run build
+      - name: Install (services/job-queue/admin)
+        working-directory: services/job-queue/admin
+        run: npm install
       - name: lint (services/job-queue/admin)
         working-directory: services/job-queue/admin
         run: npm run lint
       - name: build (services/job-queue/admin)
         working-directory: services/job-queue/admin
         run: npm run build
+      - name: Install (services/sso/portal)
+        working-directory: services/sso/portal
+        run: npm install
       - name: build (services/sso/portal)
         working-directory: services/sso/portal
         run: npm run build
+      - name: Install (services/status-page/public)
+        working-directory: services/status-page/public
+        run: npm install
       - name: lint (services/status-page/public)
         working-directory: services/status-page/public
         run: npm run lint
