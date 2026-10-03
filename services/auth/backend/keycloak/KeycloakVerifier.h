@@ -1,7 +1,9 @@
 #pragma once
 /**
  * @file KeycloakVerifier.h
- * @brief Verifies Keycloak-issued RS256 access tokens.
+ * @brief Verifies RS256 access tokens from the OIDC provider
+ *        (dbal) named by OIDC_ISSUER / OIDC_CLIENT_ID /
+ *        OIDC_JWKS_URL.
  */
 
 #include "JwksClient.h"
@@ -14,24 +16,35 @@ namespace services::auth::keycloak
 {
 
 /**
- * @brief Subset of Keycloak claims used downstream.
+ * @brief Subset of token claims used downstream.
  */
 struct KeycloakClaims
 {
     std::string sub;
+    /// UUID for users.id: sub itself if it is a UUID, else
+    /// a UUIDv5 of issuer + sub (dbal's sub is a username).
+    std::string userId;
     std::string preferredUsername;
     std::string email;
     std::string name;
     std::vector<std::string> roles;
 };
 
-/// Fixed contract — see CLAUDE.md / migration plan.
-inline constexpr const char* kKcIssuer =
-    "http://localhost:8889/sso/realms/nextra";
-inline constexpr const char* kKcClientId = "nextra-app";
-inline constexpr const char* kKcInternalJwks =
-    "http://keycloak:8080/sso/realms/nextra/"
-    "protocol/openid-connect/certs";
+/** @brief OIDC_ISSUER: the exact `iss` tokens must carry. */
+[[nodiscard]] std::string oidcIssuer();
+/** @brief OIDC_CLIENT_ID: required in `aud` or `azp`. */
+[[nodiscard]] std::string oidcClientId();
+/** @brief OIDC_JWKS_URL: where signing keys are fetched. */
+[[nodiscard]] std::string oidcJwksUrl();
+
+/**
+ * @brief Stable users.id for a token subject.
+ * @param issuer Token issuer.
+ * @param sub Token subject.
+ * @return Lower-case UUID string.
+ */
+[[nodiscard]] std::string userIdFor(const std::string& issuer,
+                                    const std::string& sub);
 
 /**
  * @brief RS256 verifier backed by a JwksClient.

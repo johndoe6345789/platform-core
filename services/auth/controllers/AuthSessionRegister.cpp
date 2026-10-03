@@ -75,7 +75,7 @@ void AuthTokenController::registerSession(
     const auto ip = req->peerAddr().toIp();
 
     services::auth::SessionStore::createSession(
-        jti, kc->sub, expStr, ua, ip,
+        jti, kc->userId, expStr, ua, ip,
         [cb = std::move(cb)](bool) {
             cb(::utils::jsonOk(
                 {{"registered", true}}));

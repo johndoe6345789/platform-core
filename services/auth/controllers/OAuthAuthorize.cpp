@@ -10,6 +10,7 @@
  */
 
 #include "OAuthController.h"
+#include "app_login_redirect.h"
 
 #include <drogon/HttpResponse.h>
 #include <string>
@@ -21,19 +22,9 @@ void OAuthController::authorize(
     const drogon::HttpRequestPtr&,
     std::function<void(
         const drogon::HttpResponsePtr&)>&& cb,
-    const std::string& provider)
+    const std::string& /*provider*/)
 {
-    std::string url =
-        "http://localhost:8889/sso/realms/nextra"
-        "/protocol/openid-connect/auth"
-        "?client_id=nextra-app&response_type=code"
-        "&scope=openid+profile+email"
-        "&redirect_uri=http%3A%2F%2Flocalhost%3A8889"
-        "%2Fapp%2Fen%2Fauth%2Fcallback"
-        "&kc_idp_hint=";
-    url += provider;
-    cb(drogon::HttpResponse::newRedirectionResponse(
-        url, drogon::k302Found));
+    cb(appLoginRedirect());
 }
 
 } // namespace controllers

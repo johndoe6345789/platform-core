@@ -10,6 +10,7 @@
  */
 
 #include "AuthPasswordController.h"
+#include "app_login_redirect.h"
 
 #include <drogon/HttpResponse.h>
 #include <string>
@@ -17,33 +18,12 @@
 namespace controllers
 {
 
-namespace
-{
-constexpr const char* kKcUpdatePassword =
-    "http://localhost:8889/sso/realms/nextra"
-    "/protocol/openid-connect/auth"
-    "?client_id=nextra-app&response_type=code"
-    "&scope=openid"
-    "&redirect_uri=http%3A%2F%2Flocalhost%3A8889"
-    "%2Fapp%2Fen%2Fauth%2Fcallback"
-    "&kc_action=UPDATE_PASSWORD";
-
-constexpr const char* kKcAccount =
-    "http://localhost:8889/sso/realms/nextra/account/";
-
-drogon::HttpResponsePtr redirect(const char* url)
-{
-    return drogon::HttpResponse::newRedirectionResponse(
-        url, drogon::k302Found);
-}
-} // namespace
-
 void AuthPasswordController::forgotPassword(
     const drogon::HttpRequestPtr&,
     std::function<void(
         const drogon::HttpResponsePtr&)>&& cb)
 {
-    cb(redirect(kKcUpdatePassword));
+    cb(appLoginRedirect());
 }
 
 void AuthPasswordController::resetPassword(
@@ -52,7 +32,7 @@ void AuthPasswordController::resetPassword(
         const drogon::HttpResponsePtr&)>&& cb,
     const std::string& /*token*/)
 {
-    cb(redirect(kKcUpdatePassword));
+    cb(appLoginRedirect());
 }
 
 void AuthPasswordController::confirmEmail(
@@ -61,7 +41,7 @@ void AuthPasswordController::confirmEmail(
         const drogon::HttpResponsePtr&)>&& cb,
     const std::string& /*token*/)
 {
-    cb(redirect(kKcAccount));
+    cb(appLoginRedirect());
 }
 
 } // namespace controllers

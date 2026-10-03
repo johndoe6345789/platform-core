@@ -3,6 +3,7 @@
  * @brief Implementations of OAuth callback helpers.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "oauth_callback_helpers.h"
 
 #include "auth/backend/oauth/GithubProvider.h"
@@ -31,7 +32,7 @@ services::auth::oauth::UserProfile mapProfile(
 void attachSso(const drogon::HttpResponsePtr& r,
                const std::string& refreshToken)
 {
-    drogon::Cookie sso("nextra_sso", refreshToken);
+    drogon::Cookie sso(::utils::ssoCookieName(), refreshToken);
     sso.setHttpOnly(true);
     sso.setPath("/");
     sso.setSameSite(drogon::Cookie::SameSite::kLax);

@@ -7,6 +7,7 @@
  * status: returns whether impersonation is active.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "ImpersonateController.h"
 #include "drogon-host/backend/utils/JsonResponse.h"
 
@@ -25,7 +26,7 @@ void ImpersonateController::stopImpersonate(
     const drogon::HttpRequestPtr& req, Cb&& cb)
 {
     auto backup =
-        req->getCookie("nextra_sso_admin");
+        req->getCookie(::utils::ssoAdminCookieName());
     if (backup.empty()) {
         cb(::utils::jsonError(
             drogon::k400BadRequest,
@@ -38,7 +39,7 @@ void ImpersonateController::stopImpersonate(
     auto resp = ::utils::jsonOk(
         json{{"message", "Restored"}});
 
-    drogon::Cookie sso("nextra_sso", backup);
+    drogon::Cookie sso(::utils::ssoCookieName(), backup);
     sso.setHttpOnly(true);
     sso.setPath("/");
     sso.setSameSite(
@@ -46,7 +47,7 @@ void ImpersonateController::stopImpersonate(
     sso.setMaxAge(30 * 24 * 3600);
     resp->addCookie(sso);
 
-    drogon::Cookie clear("nextra_sso_admin", "");
+    drogon::Cookie clear(::utils::ssoAdminCookieName(), "");
     clear.setHttpOnly(true);
     clear.setPath("/");
     clear.setMaxAge(0);
@@ -59,7 +60,7 @@ void ImpersonateController::status(
     const drogon::HttpRequestPtr& req, Cb&& cb)
 {
     auto backup =
-        req->getCookie("nextra_sso_admin");
+        req->getCookie(::utils::ssoAdminCookieName());
     json data = {
         {"impersonating", !backup.empty()},
     };

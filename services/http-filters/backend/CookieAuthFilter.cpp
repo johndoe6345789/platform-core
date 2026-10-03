@@ -1,4 +1,5 @@
 /** @brief Cookie-based auth filter — self-contained, no auth dep. */
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "CookieAuthFilter.h"
 #include "drogon-host/backend/utils/JsonResponse.h"
 #include "drogon-host/backend/utils/JwtUtil.h"
@@ -39,7 +40,7 @@ void CookieAuthFilter::doFilter(
     drogon::FilterCallback&& cb,
     drogon::FilterChainCallback&& ccb)
 {
-    auto token = req->getCookie("nextra_sso");
+    auto token = req->getCookie(::utils::ssoCookieName());
     if (token.empty()) {
         auto auth =
             req->getHeader("Authorization");

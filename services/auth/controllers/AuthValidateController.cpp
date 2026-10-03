@@ -12,6 +12,7 @@
  * Phase 4 of the Keycloak migration.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "AuthValidateController.h"
 #include "auth/backend/keycloak/KeycloakVerifier.h"
 #include "auth/backend/keycloak/UserProvision.h"
@@ -60,7 +61,7 @@ void AuthValidateController::validate(
     // Credential may arrive as the SSO cookie (browser /
     // nginx auth_request) or as a Bearer header (forwarded
     // by another service's http-filters auth_client).
-    auto token = req->getCookie("nextra_sso");
+    auto token = req->getCookie(::utils::ssoCookieName());
     if (token.empty()) {
         const auto h = req->getHeader("Authorization");
         constexpr std::string_view kBearer = "Bearer ";
@@ -86,7 +87,7 @@ void AuthValidateController::validate(
     }
 
     services::auth::keycloak::ensureUserRow(*kc);
-    cb(buildOk(kc->sub, kc->email,
+    cb(buildOk(kc->userId, kc->email,
                joinRoles(kc->roles)));
 }
 

@@ -28,7 +28,10 @@ std::string pickRole(
             if (x == r) return true;
         return false;
     };
-    if (has("admin")) return "admin";
+    // dbal's top roles all carry admin rights.
+    if (has("admin") || has("god") || has("supergod")
+        || has("owner"))
+        return "admin";
     if (has("moderator")) return "moderator";
     return "user";
 }
@@ -36,19 +39,23 @@ std::string pickRole(
 
 void ensureUserRow(const KeycloakClaims& claims)
 {
-    if (claims.sub.empty()) return;
+    if (claims.userId.empty()) return;
     {
         std::lock_guard<std::mutex> lk(g_seenMu);
-        if (g_seen.count(claims.sub)) return;
-        g_seen.insert(claims.sub);
+        if (g_seen.count(claims.userId)) return;
+        g_seen.insert(claims.userId);
     }
 
     const std::string username =
         !claims.preferredUsername.empty()
             ? claims.preferredUsername
             : claims.sub;
+    // dbal tokens carry no email claim; its usernames are
+    // often the address the user signed up with.
     const std::string email =
         !claims.email.empty() ? claims.email
+        : claims.sub.find('@') != std::string::npos
+            ? claims.sub
             : (username + "@unknown.local");
     const std::string display =
         !claims.name.empty() ? claims.name : username;
@@ -59,16 +66,16 @@ void ensureUserRow(const KeycloakClaims& claims)
         "INSERT INTO users (id, email, username,"
         " password_hash, display_name, role,"
         " email_confirmed) VALUES"
-        " ($1, $2, $3, 'keycloak', $4, $5, true)"
+        " ($1, $2, $3, 'oidc', $4, $5, true)"
         " ON CONFLICT (id) DO NOTHING",
         [](const drogon::orm::Result&) {},
-        [s = claims.sub](
+        [s = claims.userId](
             const drogon::orm::DrogonDbException& e) {
             spdlog::warn(
                 "ensureUserRow {}: {}", s,
                 e.base().what());
         },
-        claims.sub, email, username, display, role);
+        claims.userId, email, username, display, role);
 }
 
 }  // namespace services::auth::keycloak

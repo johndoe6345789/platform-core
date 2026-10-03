@@ -14,6 +14,7 @@
  * The "me" endpoint is in AuthTokenMe.cpp.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "AuthTokenController.h"
 #include "auth/backend/SessionStore.h"
 #include "drogon-host/backend/utils/JsonResponse.h"
@@ -51,7 +52,7 @@ void AuthTokenController::logout(
         {{"message", "Logged out"}});
     // Clear any residual legacy SSO cookie. New auth
     // state lives in the Keycloak end-session flow.
-    drogon::Cookie sso("nextra_sso", "");
+    drogon::Cookie sso(::utils::ssoCookieName(), "");
     sso.setHttpOnly(true);
     sso.setPath("/");
     sso.setMaxAge(0);

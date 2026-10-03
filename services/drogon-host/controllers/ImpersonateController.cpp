@@ -7,6 +7,7 @@
  * can browse the portal as that user.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "ImpersonateController.h"
 #include "impersonate_cookies.h"
 #include "auth/backend/sso_session_lookup.h"
@@ -52,7 +53,7 @@ void ImpersonateController::impersonate(
         body["userId"].get<std::string>();
 
     auto adminCookie =
-        req->getCookie("nextra_sso");
+        req->getCookie(::utils::ssoCookieName());
 
     spdlog::info(
         "Admin {} impersonating user {}",

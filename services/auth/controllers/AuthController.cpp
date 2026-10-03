@@ -9,6 +9,7 @@
  */
 
 #include "AuthController.h"
+#include "app_login_redirect.h"
 
 #include <drogon/HttpResponse.h>
 #include <string>
@@ -21,15 +22,7 @@ void AuthController::registerUser(
     std::function<void(
         const drogon::HttpResponsePtr&)>&& cb)
 {
-    static constexpr const char* kKcRegister =
-        "http://localhost:8889/sso/realms/nextra"
-        "/protocol/openid-connect/registrations"
-        "?client_id=nextra-app&response_type=code"
-        "&scope=openid+profile+email"
-        "&redirect_uri=http%3A%2F%2Flocalhost%3A8889"
-        "%2Fapp%2Fen%2Fauth%2Fcallback";
-    cb(drogon::HttpResponse::newRedirectionResponse(
-        kKcRegister, drogon::k302Found));
+    cb(appLoginRedirect());
 }
 
 } // namespace controllers

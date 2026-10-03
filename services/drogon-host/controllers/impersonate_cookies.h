@@ -9,6 +9,8 @@
  * posture.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
+
 #include <drogon/Cookie.h>
 #include <string>
 
@@ -28,7 +30,7 @@ constexpr int kImpersonationTtlSec = 5 * 60;
 inline auto makeImpersonationCookie(
     const std::string& access) -> drogon::Cookie
 {
-    drogon::Cookie c("nextra_sso", access);
+    drogon::Cookie c(::utils::ssoCookieName(), access);
     c.setHttpOnly(true);
     c.setSecure(true);
     c.setPath("/");
@@ -49,7 +51,7 @@ inline auto makeAdminBackupCookie(
     const std::string& adminToken) -> drogon::Cookie
 {
     drogon::Cookie c(
-        "nextra_sso_admin", adminToken);
+        ::utils::ssoAdminCookieName(), adminToken);
     c.setHttpOnly(true);
     c.setSecure(true);
     c.setPath("/");
