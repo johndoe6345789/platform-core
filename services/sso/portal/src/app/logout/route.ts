@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+import { publicOrigin } from '@/lib/publicOrigin';
+
+export const dynamic = 'force-dynamic';
 
 /**
  * GET /sso/logout
@@ -9,8 +12,7 @@ export function GET() {
   const res = NextResponse.redirect(
     new URL(
       '/sso/login',
-      process.env.NEXT_PUBLIC_ORIGIN
-        ?? 'http://localhost:8889',
+      publicOrigin(),
     ),
   );
   res.cookies.set('nextra_sso', '', {
