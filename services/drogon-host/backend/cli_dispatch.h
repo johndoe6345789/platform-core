@@ -49,7 +49,8 @@ inline int dispatchCommand(
             commands::cmdMigrate(
                 migrateOpts.up,
                 migrateOpts.down,
-                migrateOpts.status);
+                migrateOpts.status,
+                migrateOpts.config);
         } else if (*seedCmd) {
             commands::cmdSeed(seedOpts.file);
         } else if (*adminCmd) {

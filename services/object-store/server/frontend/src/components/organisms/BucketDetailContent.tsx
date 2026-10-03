@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import {
   Container, Typography, Breadcrumbs,
   Link as M3Link, CircularProgress,
@@ -38,6 +39,7 @@ export default function BucketDetailContent() {
           style={{ marginBottom: 16 }}
         >
           <M3Link
+            component={Link}
             href={routes.buckets}
             underline="hover"
           >

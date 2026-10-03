@@ -1,11 +1,16 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import {
   Box, Card, CardContent,
   Typography, Stack, Cloud,
 } from '@shared/m3';
-import { LoginForm } from '@/components/organisms';
 import labels from '@/constants/ui-labels.json';
+
+const LoginForm = dynamic(
+  () => import('@/components/organisms/LoginForm'),
+  { ssr: false },
+);
 
 /** @brief S3 login page. */
 export default function LoginPage() {

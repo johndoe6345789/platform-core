@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   Box, Container, Typography,
   Button, CircularProgress,
@@ -47,6 +48,7 @@ export default function DashboardContent() {
             <Box style={{ marginTop: 32 }}>
               <Button
                 variant="contained"
+                component={Link}
                 href={routes.buckets}
               >
                 {labels.dashboard.viewBuckets}

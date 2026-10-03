@@ -17,6 +17,7 @@ struct MigrateOpts
     bool up{false};
     bool down{false};
     bool status{false};
+    std::string config{"config/config.json"};
 };
 
 /// @brief Options from the "seed" sub-command.
