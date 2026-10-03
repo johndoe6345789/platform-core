@@ -61,13 +61,26 @@ void ensureUserRow(const KeycloakClaims& claims)
         !claims.name.empty() ? claims.name : username;
     const std::string role = pickRole(claims.roles);
 
+    // Username and email are UNIQUE. A different row may already
+    // hold them (the seeded admin/testuser/system rows, or a user
+    // from another identity provider), so fall back to a name
+    // derived from the id instead of failing the insert. The role
+    // follows the identity provider on every first sight.
     auto db = drogon::app().getDbClient();
     db->execSqlAsync(
         "INSERT INTO users (id, email, username,"
         " password_hash, display_name, role,"
-        " email_confirmed) VALUES"
-        " ($1, $2, $3, 'oidc', $4, $5, true)"
-        " ON CONFLICT (id) DO NOTHING",
+        " email_confirmed)"
+        " SELECT $1::uuid,"
+        "  CASE WHEN EXISTS (SELECT 1 FROM users"
+        "   WHERE email = $2 AND id <> $1::uuid)"
+        "   THEN ($1::uuid)::text || '@oidc.local' ELSE $2 END,"
+        "  CASE WHEN EXISTS (SELECT 1 FROM users"
+        "   WHERE username = $3 AND id <> $1::uuid)"
+        "   THEN $3 || '-' || substr(($1::uuid)::text, 1, 8)"
+        "   ELSE $3 END,"
+        "  'oidc', $4, $5, true"
+        " ON CONFLICT (id) DO UPDATE SET role = EXCLUDED.role",
         [](const drogon::orm::Result&) {},
         [s = claims.userId](
             const drogon::orm::DrogonDbException& e) {
