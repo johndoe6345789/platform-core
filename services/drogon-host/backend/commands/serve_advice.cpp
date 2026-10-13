@@ -4,6 +4,7 @@
  */
 
 #include "serve_advice.h"
+#include "security_headers_advice.h"
 #include "auth/backend/passkeys/ChallengeStore.h"
 
 #include <chrono>
@@ -84,6 +85,7 @@ void registerHttpAdvice()
 {
     registerRequestIdAdvice();
     registerResponseAdvice();
+    registerSecurityHeadersAdvice();
     registerChallengeSweep();
 }
 

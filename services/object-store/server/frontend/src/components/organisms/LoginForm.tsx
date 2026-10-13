@@ -16,6 +16,7 @@ export default function LoginForm() {
     <form
       onSubmit={form.handleSubmit}
       data-testid="login-form"
+      suppressHydrationWarning
     >
       <Stack spacing={2}>
         {form.error && (
@@ -31,6 +32,7 @@ export default function LoginForm() {
             form.setAccessKey(e.target.value)}
           data-testid="access-key-input"
           aria-label={labels.login.accessKey}
+          inputProps={{ suppressHydrationWarning: true }}
         />
         <TextField
           fullWidth
@@ -41,6 +43,7 @@ export default function LoginForm() {
             form.setSecretKey(e.target.value)}
           data-testid="secret-key-input"
           aria-label={labels.login.secretKey}
+          inputProps={{ suppressHydrationWarning: true }}
         />
         <Button
           type="submit"

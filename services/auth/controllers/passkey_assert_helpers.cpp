@@ -3,6 +3,7 @@
  * @brief Session mint + last-used update for passkeys.
  */
 
+#include "drogon-host/backend/utils/SsoCookie.h"
 #include "passkey_assert_helpers.h"
 #include "drogon-host/backend/utils/JsonResponse.h"
 #include "drogon-host/backend/utils/JwtUtil.h"
@@ -35,7 +36,7 @@ void issuePasskeySession(
          {{"accessToken", access},
           {"refreshToken", refresh}}}};
     auto resp = ::utils::jsonOk(payload);
-    drogon::Cookie sso("nextra_sso", refresh);
+    drogon::Cookie sso(::utils::ssoCookieName(), refresh);
     sso.setHttpOnly(true);
     sso.setPath("/");
     sso.setSameSite(drogon::Cookie::SameSite::kLax);

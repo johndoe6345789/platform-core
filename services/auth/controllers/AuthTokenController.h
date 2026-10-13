@@ -23,6 +23,9 @@ class AuthTokenController
     ADD_METHOD_TO(AuthTokenController::me,
                   "/api/auth/me", drogon::Get,
                   "filters::JwtAuthFilter");
+    ADD_METHOD_TO(
+        AuthTokenController::registerSession,
+        "/api/auth/session", drogon::Post);
     METHOD_LIST_END
 
     /** @brief Invalidate the current access token. */
@@ -37,6 +40,18 @@ class AuthTokenController
 
     /** @brief Return the authenticated user's profile. */
     void me(
+        const drogon::HttpRequestPtr& req,
+        std::function<void(const drogon::HttpResponsePtr&)>&& cb);
+
+    /**
+     * @brief Register a Keycloak JTI in the session store.
+     *
+     * Called by the SPA right after every token exchange or
+     * silent refresh. No JwtAuthFilter — validates the token
+     * internally, then upserts into user_sessions so that
+     * subsequent requests pass the session-hardening check.
+     */
+    void registerSession(
         const drogon::HttpRequestPtr& req,
         std::function<void(const drogon::HttpResponsePtr&)>&& cb);
 };

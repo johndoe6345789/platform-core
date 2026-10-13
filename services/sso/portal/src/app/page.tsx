@@ -1,4 +1,7 @@
 import { redirect } from 'next/navigation';
+import { publicOrigin } from '@/lib/publicOrigin';
+
+export const dynamic = 'force-dynamic';
 
 /**
  * SSO portal landing page.
@@ -15,8 +18,5 @@ export default function SsoIndexPage() {
   // Bounce to frontend login so PKCE cookies are set up
   // before hitting Keycloak. Absolute URL needed because
   // SSO portal basePath '/sso' would prepend a relative one.
-  redirect(
-    'http://localhost:8889'
-    + '/app/en/login?next=%2F',
-  );
+  redirect(`${publicOrigin()}/app/en/login?next=%2F`);
 }

@@ -9,11 +9,12 @@
  * token. That bypassed Keycloak entirely.
  *
  * The route is retained per template-repo policy but
- * any caller is now 302'd to Keycloak's authorize
- * endpoint to enrol them in the proper PKCE flow.
+ * any caller is now 302'd to the app's login page, which
+ * runs the OIDC PKCE flow.
  */
 
 #include "AuthController.h"
+#include "app_login_redirect.h"
 
 #include <drogon/HttpResponse.h>
 #include <string>
@@ -27,19 +28,7 @@ namespace controllers
 void AuthController::login(
     const drogon::HttpRequestPtr&, Cb&& cb)
 {
-    static const std::string kTarget =
-        "http://localhost:8889"
-        "/sso/realms/nextra/"
-        "protocol/openid-connect/auth"
-        "?client_id=nextra-app"
-        "&response_type=code"
-        "&scope=openid+profile+email"
-        "&redirect_uri="
-        "http%3A%2F%2Flocalhost%3A8889"
-        "%2Fapp%2Fen%2Fauth%2Fcallback";
-    auto resp = drogon::HttpResponse::
-        newRedirectionResponse(kTarget,
-            drogon::k302Found);
+    auto resp = appLoginRedirect();
     cb(resp);
 }
 

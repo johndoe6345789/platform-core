@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   AppBar, Toolbar, Typography,
   Button, Box, Cloud,
@@ -39,6 +40,7 @@ export default function AppNavbar() {
         </Typography>
         <Button
           color="inherit"
+          component={Link}
           href={routes.dashboard}
           size="small"
         >
@@ -46,6 +48,7 @@ export default function AppNavbar() {
         </Button>
         <Button
           color="inherit"
+          component={Link}
           href={routes.buckets}
           size="small"
         >

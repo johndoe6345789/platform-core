@@ -1,0 +1,5 @@
+{
+  "refreshTokenApiError": "Refresh tokens cannot be used for API access. Use /api/auth/token to obtain an access token.",
+  "sessionRevokedError": "Session has been revoked. Please log in again.",
+  "sessionDbError": "Authentication service unavailable."
+}

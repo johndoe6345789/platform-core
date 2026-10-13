@@ -32,6 +32,10 @@ inline CLI::App* addMigrateCmd(
     cmd->add_flag(
         "--status", opts.status,
         "Show current migration state");
+    cmd->add_option(
+        "-c,--config", opts.config,
+        "Path to Drogon JSON config")
+        ->default_val("config/config.json");
     return cmd;
 }
 

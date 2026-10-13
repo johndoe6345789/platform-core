@@ -1,6 +1,8 @@
 import type { S3Credentials } from '@/types';
 
 const STORAGE_KEY = 's3_credentials';
+const BASE_PATH =
+  process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 /** @brief Read stored S3 credentials. */
 export function getCredentials():
@@ -50,7 +52,10 @@ export async function s3Fetch(
     ...authHeaders(),
     ...init?.headers,
   };
-  return fetch(path, { ...init, headers });
+  return fetch(
+    `${BASE_PATH}${path}`,
+    { ...init, headers },
+  );
 }
 
 /**

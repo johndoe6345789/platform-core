@@ -5,6 +5,8 @@
  *        endpoints. Keycloak migration phase 3.
  */
 
+#include "app_login_redirect.h"
+
 #include <drogon/HttpResponse.h>
 
 namespace controllers
@@ -17,16 +19,7 @@ namespace controllers
  */
 inline drogon::HttpResponsePtr passkeyKeycloakRedirect()
 {
-    static constexpr const char* kUrl =
-        "http://localhost:8889/sso/realms/nextra"
-        "/protocol/openid-connect/auth"
-        "?client_id=nextra-app&response_type=code"
-        "&scope=openid"
-        "&redirect_uri=http%3A%2F%2Flocalhost%3A8889"
-        "%2Fapp%2Fen%2Fauth%2Fcallback"
-        "&kc_action=webauthn-register-passwordless";
-    return drogon::HttpResponse::newRedirectionResponse(
-        kUrl, drogon::k302Found);
+    return appLoginRedirect();
 }
 
 } // namespace controllers

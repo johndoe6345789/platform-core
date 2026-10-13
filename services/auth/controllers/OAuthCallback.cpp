@@ -9,6 +9,7 @@
  */
 
 #include "OAuthController.h"
+#include "app_login_redirect.h"
 
 #include <drogon/HttpResponse.h>
 #include <string>
@@ -22,9 +23,7 @@ void OAuthController::callback(
         const drogon::HttpResponsePtr&)>&& cb,
     const std::string& /*provider*/)
 {
-    cb(drogon::HttpResponse::newRedirectionResponse(
-        "http://localhost:8889/app/en/login",
-        drogon::k302Found));
+    cb(appLoginRedirect());
 }
 
 } // namespace controllers

@@ -1,5 +1,8 @@
 import { redirect } from 'next/navigation';
 import { safeNext } from '@/lib/safeNext';
+import { publicOrigin } from '@/lib/publicOrigin';
+
+export const dynamic = 'force-dynamic';
 
 interface LoginPageProps {
   searchParams: Promise<{ next?: string }>;
@@ -32,8 +35,6 @@ export default async function LoginPage({
   // to Keycloak — the frontend's `login()` sets up the PKCE
   // verifier+state cookies that the callback page validates.
   // Absolute URL because basePath '/sso' would prepend.
-  const target = 'http://localhost:8889'
-    + '/app/en/login?next='
-    + encodeURIComponent(next);
+  const target = `${publicOrigin()}/app/en/login?next=${encodeURIComponent(next)}`;
   redirect(target);
 }
