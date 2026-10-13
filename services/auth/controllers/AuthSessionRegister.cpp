@@ -16,6 +16,7 @@
 #include <spdlog/spdlog.h>
 #include <ctime>
 #include <string>
+#include <memory>
 #include <string_view>
 
 namespace controllers
@@ -74,16 +75,22 @@ void AuthTokenController::registerSession(
     const auto ua = req->getHeader("User-Agent");
     const auto ip = req->peerAddr().toIp();
 
+    // Both outcomes answer the same way, and only one of the two
+    // lambdas runs, so they share the callback. (Moving it into
+    // each left the failure lambda with an empty function, and a
+    // failed insert -- the users row is only created later, by
+    // /api/auth/me, on a first login -- aborted the whole daemon.)
+    auto done = std::make_shared<Cb>(std::move(cb));
     services::auth::SessionStore::createSession(
         jti, kc->userId, expStr, ua, ip,
-        [cb = std::move(cb)](bool) {
-            cb(::utils::jsonOk(
+        [done](bool) {
+            (*done)(::utils::jsonOk(
                 {{"registered", true}}));
         },
-        [cb = std::move(cb)](const std::string& e) {
+        [done](const std::string& e) {
             spdlog::debug("registerSession: {}", e);
-            cb(::utils::jsonOk(
-                {{"registered", true}}));
+            (*done)(::utils::jsonOk(
+                {{"registered", false}}));
         });
 }
 
